@@ -32,3 +32,5 @@ if [ -z "$DOCKER_PARAMETERS" ]; then
 else
     docker run $DOCKER_PARAMETERS -d $1;
 fi
+
+exit
