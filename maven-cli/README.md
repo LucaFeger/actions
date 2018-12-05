@@ -1,22 +1,13 @@
 # GitHub Action for the Maven CLI
 
-The GitHub Action allows to automatically deploy your application as a docker container to your server.
+The GitHub Action for [Maven](https://maven.apache.org/) wraps the Maven CLI to enable Maven commands to be run. This can be used to run every Maven Command.
 
 ## Usage
 
 ```
 action "package" {
-  uses = "LucaFeger/actions/docker-deploy@master"
-  args = "lucafeger/node-hello-world"
-  env = {
-    DOCKER_PARAMETERS  = "-p 1234:8081 --name=my-application"
-  }
-  secrets = [
-    "PRIVATE_KEY",
-    "PUBLIC_KEY",
-    "HOST",
-    "USER"
-  ]
+  uses = "LucaFeger/actions/maven-cli@master"
+  args = "clean install"
 }
 ```
 
