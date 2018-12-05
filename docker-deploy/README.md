@@ -1,4 +1,4 @@
-# GitHub Action for the Maven CLI
+# GitHub Action for deploying Docker containers
 
 The GitHub Action allows to automatically deploy your application as a docker container to your server.
 
