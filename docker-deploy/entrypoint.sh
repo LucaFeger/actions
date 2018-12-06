@@ -21,12 +21,10 @@ ssh-add "$SSH_PATH/deploy_key"
 
 ssh-keyscan -t rsa $HOST >> "$SSH_PATH/known_hosts"
 
-docker login --username $DOCKER_USERNAME --pasword $DOCKER_PASSWORD
-
-
 if [ -z "$DOCKER_PARAMETERS" ]; then
 
 ssh -A -tt -o 'StrictHostKeyChecking=no' $USER@$HOST << EOF
+docker login --username $DOCKER_USERNAME --pasword $DOCKER_PASSWORD
 docker stop $(docker ps -a -q  --filter ancestor=$1)
 docker rm $(docker ps -a -q  --filter ancestor=$1)
 docker rmi $1
@@ -36,6 +34,7 @@ EOF
 else
 
 ssh -A -tt -o 'StrictHostKeyChecking=no' $USER@$HOST << EOF
+docker login --username $DOCKER_USERNAME --pasword $DOCKER_PASSWORD
 docker stop $(docker ps -a -q  --filter ancestor=$1)
 docker rm $(docker ps -a -q  --filter ancestor=$1)
 docker rmi $1
