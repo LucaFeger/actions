@@ -15,7 +15,9 @@ action "package" {
     "PRIVATE_KEY",
     "PUBLIC_KEY",
     "HOST",
-    "USER"
+    "USER",
+    "DOCKER_USERNAME",
+    "DOCKER_PASSWORD"
   ]
 }
 ```
