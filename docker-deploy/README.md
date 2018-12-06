@@ -38,6 +38,8 @@ The name of the docker image that will be run
 * **DOCKER_USERNAME** Your Dockerhub username
 * **DOCKER_PASSWORD** Your Dockerhub password
 
+<span style="color:red">**If your image is private and the docker credentials are incorrect the Action won't end at the moment until GitHub ends it after an hour**</span>
+
 ## License
 
 The Dockerfile and associated scripts and documentation in this project are released under the [MIT License](LICENSE.md).
