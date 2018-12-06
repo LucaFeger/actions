@@ -21,16 +21,13 @@ ssh-add "$SSH_PATH/deploy_key"
 
 ssh-keyscan -t rsa $HOST >> "$SSH_PATH/known_hosts"
 
-ssh -A -tt -o 'StrictHostKeyChecking=no' $USER@$HOST
-
+ssh -A -tt -o 'StrictHostKeyChecking=no' $USER@$HOST << EOF
 docker stop $(docker ps -a -q  --filter ancestor=$1)
 docker rm $(docker ps -a -q  --filter ancestor=$1)
 docker rmi $1
-
 if [ -z "$DOCKER_PARAMETERS" ]; then
     docker run -d $1;
 else
     docker run $DOCKER_PARAMETERS -d $1;
 fi
-
-exit
+EOF
