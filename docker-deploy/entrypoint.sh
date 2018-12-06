@@ -24,21 +24,23 @@ ssh-keyscan -t rsa $HOST >> "$SSH_PATH/known_hosts"
 if [ -z "$DOCKER_PARAMETERS" ]; then
 
 ssh -A -tt -o 'StrictHostKeyChecking=no' $USER@$HOST << EOF
-docker login --username $DOCKER_USERNAME --pasword $DOCKER_PASSWORD
+docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
 docker stop $(docker ps -a -q  --filter ancestor=$1)
 docker rm $(docker ps -a -q  --filter ancestor=$1)
 docker rmi $1
 docker run -d $1
+exit
 EOF
 
 else
 
 ssh -A -tt -o 'StrictHostKeyChecking=no' $USER@$HOST << EOF
-docker login --username $DOCKER_USERNAME --pasword $DOCKER_PASSWORD
+docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
 docker stop $(docker ps -a -q  --filter ancestor=$1)
 docker rm $(docker ps -a -q  --filter ancestor=$1)
 docker rmi $1
 docker run $DOCKER_PARAMETERS -d $1
+exit
 EOF
 
 fi
